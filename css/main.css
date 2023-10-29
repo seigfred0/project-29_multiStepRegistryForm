@@ -1,0 +1,62 @@
+/* font-family: 'Inter', sans-serif; */
+
+@import url(./registryCard.css);
+
+:root {
+    --font: 'Inter', sans-serif;
+
+    --purple: #652CD1;
+    --purpleLight: #845EEE;
+    --darkblue: #121826;
+    --gray: #212936;
+    --grayLight: #394150;
+    --grayLighter: #4D5562;
+    --grayLightest: #A1A1A9;
+    --white: #E5E7EB;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    color: white;
+    font-family: var(--font);
+}
+
+/* Background Colors */
+main {
+    position: relative;
+    max-width: 425px;
+    background-color: var(--darkblue);
+    height: 100vh;
+    margin: 0 auto;
+
+    overflow: hidden;
+    z-index: 0;
+
+    display: flex;
+    align-items: center;
+}
+
+.background-colors-one {
+    position: absolute;
+    top: 23em;
+    left: 5em;
+    object-fit: contain;
+    z-index: -1;
+}
+
+.background-colors-two {
+    position: absolute;
+    top: -27em;
+    left: -25em;
+    object-fit: contain;
+    z-index: -1;
+
+}
+
+
