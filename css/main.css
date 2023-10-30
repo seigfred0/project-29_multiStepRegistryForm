@@ -30,7 +30,7 @@ body {
 /* Background Colors */
 main {
     position: relative;
-    max-width: 425px;
+    max-width: 640px;
     background-color: var(--darkblue);
     height: 100vh;
     margin: 0 auto;
@@ -42,18 +42,22 @@ main {
     align-items: center;
 }
 
+button {
+    cursor: pointer;
+}
+
 .background-colors-one {
     position: absolute;
-    top: 23em;
-    left: 5em;
+    top: 20em;
+    left: 12em;
     object-fit: contain;
     z-index: -1;
 }
 
 .background-colors-two {
     position: absolute;
-    top: -27em;
-    left: -25em;
+    top: -25em;
+    left: -20em;
     object-fit: contain;
     z-index: -1;
 
