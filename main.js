@@ -1,5 +1,16 @@
 
 const submit = document.querySelector('#continueBtn');
+const userName = document.querySelector('#userName');
+const userEmail = document.querySelector('#userEmail');
+
+userName.addEventListener('keydown', enterKey);
+userEmail.addEventListener('keydown', enterKey);
+
+function enterKey(event) {
+    if (event.key === "Enter") {
+        errorMessage(userName.value, userEmail.value)
+    }
+}
 
 
 submit.addEventListener('click', function() {
@@ -37,8 +48,12 @@ function errorMessage(userName, userEmail) {
                 message.innerHTML = "Your Email Is Missing"
             }
         })
-    } else if () {
-        
+    } else if (!userEmail.match(/^\S+@\S+\.\S+$/)) {
+        errorMessage.forEach((message) => {
+            if (message.getAttribute('data-input-id') === 'userEmail') {
+                message.innerHTML = "Invalid Email Address"
+            }
+        })
     }
 }
 
