@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 2.25em;
+    margin-bottom: 1em;
 }
 
 .body-text {
@@ -53,7 +54,7 @@
     justify-content: center;
     /* background-color: red; */
     padding: 1em;
-    margin-top: 0.5em;
+    /* margin-top: 0.5em; */
 }
 
 .card-container_button button{
@@ -127,4 +128,45 @@
     bottom: -6.2em;
     left: 0;
     color: var(--purpleLight);
+}
+
+
+/* ///////////// STEP TWO OF THE PROCESS //////////// */
+.card-container_choices {
+    display: flex;
+    flex-direction: column; 
+    gap: 1em;
+    margin-top: 2em;
+}
+.card-container_choices span{
+    display: block;
+    padding: 1.25em;
+    background-color: var(--grayLight);
+    border-radius: 12px;
+    font-size: 0.875rem;
+    border: 1px solid var(--grayLighter);
+    cursor: pointer;
+}
+
+.card-container_choices span:hover{
+    display: block;
+    padding: 1.25em;
+    background-color: var(--purple);
+    border-radius: 12px;
+    font-size: 0.875rem;
+    border: 1px solid var(--purpleLight);
+    cursor: pointer;
+}
+
+
+
+/* ///////////// STEP THREE OF THE PROCESS //////////// */
+
+
+.card-container_results .subText {
+    color: var(--grayLightest);
+}
+
+.card-container_results .subText span {
+    color: white;
 }

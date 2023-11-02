@@ -15,8 +15,10 @@
         <img class="background-colors-one" src="blur-radial.svg" alt="">
         <img class="background-colors-two" src="blur-radial.svg" alt="">
 
+     
         <div class="card-container">
-            <div class="card-main">
+
+            <div class="card-main step-one" data-input-id="pageOne">
                 <h1>Register</h1>
                 <div class="card-container_inputs">
                     <label class="body-text" for="userName">Name <span class="errorMessage" data-input-id="userName"></span></label> 
@@ -26,7 +28,33 @@
                     <input class="inputs" type="text" name="userEmail" id="userEmail" placeholder="example@gmail.com">
                 </div>
                 <div class="card-container_button">
-                    <button id="continueBtn">Continue</button>
+                    <button class="continueBtn">Continue</button>
+                </div>
+            </div>
+
+            <div class="card-main step-two" data-input-id="pageTwo">
+                <h1>Whic topics you are interested in?</h1>
+                <div class="card-container_choices">
+                    <span>Software Development</span>
+                    <span>User Experience</span>
+                    <span>Graphic Design</span>
+                </div>
+                <div class="card-container_button">
+                    <button class="continueBtn">Continue</button>
+                </div>
+            </div>
+
+            <div class="card-main step-three" data-input-id="pageThree">
+                <h1>Summary</h1>
+                <div class="card-container_results">
+                    <p class="subText">Name: <span>SampleName</span></p>
+                    <p class="subText">Email: <span>sampleEmail@gmail.com</span></p>
+                    <div class="subText-topics">
+
+                    </div>    
+                </div>
+                <div class="card-container_button">
+                    <button class="continueBtn">Continue</button>
                 </div>
             </div>
 

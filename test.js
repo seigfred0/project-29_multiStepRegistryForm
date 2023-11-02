@@ -35,3 +35,162 @@ submit.addEventListener('click', function() {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Initialize an array to store user input
+const formData = [];
+
+// Select form elements and buttons
+const formSections = document.querySelectorAll('.form-section');
+const nextButton = document.querySelector('#nextButton');
+const prevButton = document.querySelector('#prevButton');
+const submitButton = document.querySelector('#submitButton');
+
+// Start with the first form section
+let currentSection = 0;
+
+// Function to move to the next section
+function nextSection() {
+  if (currentSection < formSections.length - 1) {
+    formSections[currentSection].style.display = 'none';
+    currentSection++;
+    formSections[currentSection].style.display = 'block';
+  }
+}
+
+// Function to move to the previous section
+function prevSection() {
+  if (currentSection > 0) {
+    formSections[currentSection].style.display = 'none';
+    currentSection--;
+    formSections[currentSection].style.display = 'block';
+  }
+}
+
+// Function to handle form submission
+function submitForm() {
+  // Capture and store user input
+  const inputField = formSections[currentSection].querySelector('input');
+  formData[currentSection] = inputField.value;
+  
+  if (currentSection < formSections.length - 1) {
+    nextSection();
+  } else {
+    // Display a summary of user input on the final page
+    const summary = document.getElementById('summary');
+    summary.innerHTML = '<h2>Summary</h2>';
+    formData.forEach((value, index) => {
+      summary.innerHTML += `<p>Stage ${index + 1}: ${value}</p>`;
+    });
+  }
+}
+
+// Event listeners for buttons
+nextButton.addEventListener('click', nextSection);
+prevButton.addEventListener('click', prevSection);
+submitButton.addEventListener('click', submitForm);
+
+
+/////////////////////////////
+
+
+
+const submit = document.querySelectorAll('.continueBtn');
+const userName = document.querySelector('#userName');
+const userEmail = document.querySelector('#userEmail');
+
+userName.addEventListener('keydown', enterKey);
+userEmail.addEventListener('keydown', enterKey);
+
+let proceed = false;
+
+
+// Submitting Options
+function enterKey(event) {
+    if (event.key === "Enter") {
+        errorMessage(userName.value, userEmail.value);
+        stepTwo();
+    }
+}
+
+submit.addEventListener('click', function() {
+    const userName = document.querySelector('#userName').value;
+    const userEmail = document.querySelector('#userEmail').value;
+
+    // const userData = []
+
+   errorMessage(userName, userEmail);
+   stepTwo();
+   stepThree();
+})
+
+
+function errorMessage(userName, userEmail) {
+    let errorMessage = document.querySelectorAll('.errorMessage');
+    errorMessage.forEach((message) => {
+        message.innerHTML = '';
+    });
+
+    if (userName === '') {
+        errorMessage.forEach((message) => {
+            if (message.getAttribute('data-input-id') === 'userName') {
+                message.innerHTML = "What's Your Name?";
+            }
+        });
+    }
+
+    if (userEmail === '') {
+        errorMessage.forEach((message) => {
+            if (message.getAttribute('data-input-id') === 'userEmail') {
+                message.innerHTML = "Your Email Is Missing"
+            } 
+        })
+    } else if (!userEmail.match(/^\S+@\S+\.\S+$/)) {
+        errorMessage.forEach((message) => {
+            if (message.getAttribute('data-input-id') === 'userEmail') {
+                message.innerHTML = "Invalid Email Address"
+            } 
+        })
+    } else {
+        proceed = true;
+    }
+}
+
+function stepTwo() {
+    const firstStep = document.querySelector('.step-one');
+    const secondStep = document.querySelector('.step-two');
+
+    if (proceed === true) {
+        console.log("it's time for the next process");
+        firstStep.style.display = 'none'
+    }
+}
+
+function stepThree(stepTwo) {
+
+}
+
