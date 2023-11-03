@@ -168,9 +168,9 @@
     color: white;
 }
 
-/* .step-one {
+.step-one {
     display: none;
-} */
+}
 
 span.selected {
     background-color: var(--purple);

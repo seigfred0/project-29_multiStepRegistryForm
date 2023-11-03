@@ -1,79 +1,20 @@
-let selectedInterests = [];
+const continueBtn = document.querySelectorAll('.continueBtn');
 
-const submit = document.querySelectorAll('.continueBtn');
-const userName = document.querySelector('#userName');
-const userEmail = document.querySelector('#userEmail');
-let nextStep = false;
+let pageCount = 2;
+let userInterests = [];
+let userInfo = [];
 
-const pageOne = document.querySelector('.step-one');
-const pageTwo = document.querySelector('.step-two');
 
-// userName.addEventListener('keydown', enterKey);
-// userEmail.addEventListener('keydown', enterKey);
+function stepOne() {
+    const userName = document.querySelector('#userName').value;
+    const userEmail = document.querySelector('#userEmail').value;
+    const firstPage = document.querySelector('.step-one');
 
-// Submitting Options
-function enterKey(event) {
-    if (event.key === "Enter") {
-        errorMessage(userName.value, userEmail.value);
-       
-    }
+    errorMessage(userName, userEmail, firstPage)
+    
 }
 
-submit.forEach((button) => {
-    button.addEventListener('click', () => {
-        const cardPage = document.querySelectorAll('.card-main');
-        let cardCount = 1;
-        
-     
-
-        cardPage.forEach(() => {   
-            if (cardCount === 1)  {
-                const userName = document.querySelector('#userName').value;
-                const userEmail = document.querySelector('#userEmail').value;
-               
-                errorMessage(userName, userEmail);
-                nextStep = errorMessage(userName, userEmail);
-                if (nextStep) {
-                    pageOne.style.display = "none";
-                    cardCount += 1;;
-                }
-
-            } else if (cardCount === 2) {
-                console.log("its page two");
-
-                const interestChoices = document.querySelectorAll('.interest');
-                interestChoices.forEach((choice) => {
-                    choice.addEventListener('click', () => toggleChoices(choice))
-                   
-                })
-
-                function toggleChoices(choice) {
-                    const selected = choice.getAttribute('data-value');
-                    console.log(selected)
-                    choice.classList.toggle('selected');
-
-                    if (choice.classList.contains('selected')) {
-                        selectedInterests.push(selected);
-                    } else {
-                        selectedInterests = selectedInterests.filter(interest => interest !== selected)
-                    }
-           
-                } 
-            } else if (cardCount === 3) {
-                console.log("Yey I'ts The Last Page")
-                pageTwo.style.display = 'none';
-
-
-            }
-            
-            
-        })
-    })
-})
-
-
-
-function errorMessage(userName, userEmail) {
+function errorMessage(userName, userEmail, firstPage) {
     let errorMessage = document.querySelectorAll('.errorMessage');
     errorMessage.forEach((message) => {
         message.innerHTML = '';
@@ -100,11 +41,47 @@ function errorMessage(userName, userEmail) {
             } 
         })
     } else {
-        nextStep = true;
+        userInfo.push(userName);
+        userInfo.push(userEmail);
+        firstPage.style.display = 'none';
+        pageCount += 1;
     }
-
-    return nextStep 
 }
 
+function stepTwo() {
+    const interests = document.querySelectorAll('.interest');
+    interests.forEach((options) => {
+        options.addEventListener('click', () => {
+            const selected = options.getAttribute('data-value');
+
+            options.classList.toggle('selected');
+            if (options.classList.contains('selected')) {
+                userInterests.push(selected)
+            } else {
+                userInterests = userInterests.filter(chosen => chosen !== selected)
+                
+            } // still a bit confused to the logic on this one...
+            
+            console.log(userInterests)
+            
+        })
+    });
+
+    
+}
+
+continueBtn.forEach((nextPage) => {
+    nextPage.addEventListener('click', () => {
+        if (pageCount === 1) {
+            stepOne();
+            console.log(userInfo)
+        } else if (pageCount === 2) {
+            stepTwo();
+            console.log(pageCount)
 
 
+        } else if (pageCount === 3) {
+            stepThree();
+        }
+    });
+});
