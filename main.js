@@ -1,10 +1,15 @@
+let selectedInterests = [];
 
 const submit = document.querySelectorAll('.continueBtn');
 const userName = document.querySelector('#userName');
 const userEmail = document.querySelector('#userEmail');
+let nextStep = false;
 
-userName.addEventListener('keydown', enterKey);
-userEmail.addEventListener('keydown', enterKey);
+const pageOne = document.querySelector('.step-one');
+const pageTwo = document.querySelector('.step-two');
+
+// userName.addEventListener('keydown', enterKey);
+// userEmail.addEventListener('keydown', enterKey);
 
 // Submitting Options
 function enterKey(event) {
@@ -16,31 +21,55 @@ function enterKey(event) {
 
 submit.forEach((button) => {
     button.addEventListener('click', () => {
-        const userName = document.querySelector('#userName').value;
-        const userEmail = document.querySelector('#userEmail').value;
         const cardPage = document.querySelectorAll('.card-main');
-        const currentPage = cardPage[0]; // take the data input id
+        let cardCount = 1;
+        
+     
 
-        cardPage.forEach((card) => {
-            // console.log(card.getAttribute('data-input-id'));
-            if (card.getAttribute('data-input-id') === "pageOne")  {
-                console.log('Its page one')
+        cardPage.forEach(() => {   
+            if (cardCount === 1)  {
+                const userName = document.querySelector('#userName').value;
+                const userEmail = document.querySelector('#userEmail').value;
+               
                 errorMessage(userName, userEmail);
-                proceed(currentPage)
+                nextStep = errorMessage(userName, userEmail);
+                if (nextStep) {
+                    pageOne.style.display = "none";
+                    cardCount += 1;;
+                }
+
+            } else if (cardCount === 2) {
+                console.log("its page two");
+
+                const interestChoices = document.querySelectorAll('.interest');
+                interestChoices.forEach((choice) => {
+                    choice.addEventListener('click', () => toggleChoices(choice))
+                   
+                })
+
+                function toggleChoices(choice) {
+                    const selected = choice.getAttribute('data-value');
+                    console.log(selected)
+                    choice.classList.toggle('selected');
+
+                    if (choice.classList.contains('selected')) {
+                        selectedInterests.push(selected);
+                    } else {
+                        selectedInterests = selectedInterests.filter(interest => interest !== selected)
+                    }
+           
+                } 
+            } else if (cardCount === 3) {
+                console.log("Yey I'ts The Last Page")
+                pageTwo.style.display = 'none';
+
+
             }
-
-
+            
+            
         })
-
-
-
     })
-    
 })
-
-function proceed(checkPage) {
-    
-}
 
 
 
@@ -71,8 +100,10 @@ function errorMessage(userName, userEmail) {
             } 
         })
     } else {
-        proceed = true;
+        nextStep = true;
     }
+
+    return nextStep 
 }
 
 

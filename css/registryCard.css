@@ -137,7 +137,9 @@
     flex-direction: column; 
     gap: 1em;
     margin-top: 2em;
+    user-select: none;
 }
+
 .card-container_choices span{
     display: block;
     padding: 1.25em;
@@ -148,15 +150,10 @@
     cursor: pointer;
 }
 
-.card-container_choices span:hover{
-    display: block;
-    padding: 1.25em;
+/* .card-container_choices span:hover{
     background-color: var(--purple);
-    border-radius: 12px;
-    font-size: 0.875rem;
-    border: 1px solid var(--purpleLight);
-    cursor: pointer;
-}
+    
+} */
 
 
 
@@ -168,5 +165,14 @@
 }
 
 .card-container_results .subText span {
+    color: white;
+}
+
+/* .step-one {
+    display: none;
+} */
+
+span.selected {
+    background-color: var(--purple);
     color: white;
 }

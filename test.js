@@ -194,3 +194,55 @@ function stepThree(stepTwo) {
 
 }
 
+
+
+
+   // cardPage.forEach((card) => {
+        //     if (card.getAttribute('data-input-id') === "pageOne")  {
+        //         const userName = document.querySelector('#userName').value;
+        //         const userEmail = document.querySelector('#userEmail').value;
+               
+        //         errorMessage(userName, userEmail);
+        //         nextStep = errorMessage(userName, userEmail);
+        //         console.log(nextStep)
+        //         if (nextStep) {
+        //             pageOne.style.display = "none"
+        //         }
+
+        //         console.log('its page One')
+        //         // proceed(currentPage)
+        //     } else if (card.getAttribute('data-input-id') === "pageTwo") {
+        //         console.log("its page two")
+        //     }
+        // })
+
+
+
+        const interestSpans = document.querySelectorAll(".interest");
+
+                interestSpans.forEach((choice) => {
+                    choice.addEventListener('click', () => toggleInterest(choice))
+                    getSelectedInterests()
+                })
+
+
+                function toggleInterest(choice) {
+                    const value = choice.getAttribute("data-value");
+                    
+                    if (selectedInterests.includes(value)) {
+                        const index = selectedInterests.indexOf(value);
+                        if (index !== -1) {
+                            selectedInterests.splice(index, 1);
+                        }
+                        choice.classList.remove("selected")
+                    } else {
+                        choice.style.backgroundColor = 'red'
+                        selectedInterests.push(value);
+                        choice.classList.add("selected")
+                    }
+                }
+
+                function getSelectedInterests() {
+                    console.log("Selected interests:", selectedInterests);
+                    // You can perform additional actions with the selected interests here.
+                }
