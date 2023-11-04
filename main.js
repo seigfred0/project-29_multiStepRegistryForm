@@ -1,7 +1,8 @@
 const continueBtn = document.querySelectorAll('.continueBtn');
+const interests = document.querySelectorAll('.interest');
 
-let pageCount = 2;
-let userInterests = [];
+let pageCount = 1;
+let userInterests = []
 let userInfo = [];
 
 
@@ -49,6 +50,15 @@ function errorMessage(userName, userEmail, firstPage) {
 }
 
 function stepTwo() {
+    const secondPage = document.querySelector('.step-two');
+   if (userInterests.length > 0) {
+    pageCount += 1;
+    secondPage.style.display = 'none';
+   } 
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
     const interests = document.querySelectorAll('.interest');
     interests.forEach((options) => {
         options.addEventListener('click', () => {
@@ -60,14 +70,34 @@ function stepTwo() {
             } else {
                 userInterests = userInterests.filter(chosen => chosen !== selected)
                 
-            } // still a bit confused to the logic on this one...
-            
-            console.log(userInterests)
+            }
             
         })
     });
 
     
+})
+
+
+function stepThree() {
+   
+
+    const displayName = document.querySelector('.userNameView');
+    const displayEmail = document.querySelector('.userEmailView');
+    const interestView = document.querySelector('.interest-view-container');
+    // console.log(displayUserInterest)
+    // console.log(userInterests)
+    displayName.innerHTML = userInfo[0];
+    displayEmail.innerHTML = userInfo[1];
+    
+    interestView.innerHTML = ''
+    
+    userInterests.forEach((interest) => {
+        const userInterestElement = `
+        <p class="userInterestView custom-class">• ${interest}</p>`;
+        interestView.insertAdjacentHTML('beforeend', userInterestElement);
+    })
+
 }
 
 continueBtn.forEach((nextPage) => {
@@ -77,9 +107,7 @@ continueBtn.forEach((nextPage) => {
             console.log(userInfo)
         } else if (pageCount === 2) {
             stepTwo();
-            console.log(pageCount)
-
-
+            
         } else if (pageCount === 3) {
             stepThree();
         }

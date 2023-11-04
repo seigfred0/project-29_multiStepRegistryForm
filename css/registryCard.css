@@ -159,20 +159,53 @@
 
 /* ///////////// STEP THREE OF THE PROCESS //////////// */
 
-
+.card-container_results {
+    margin-top: 1.5em;
+   
+}
+/* 
 .card-container_results .subText {
+    line-height: 1.75em;
+} */
+
+.card-container_results .subText,
+.emphasize {
     color: var(--grayLightest);
+    line-height: 1.75em;
+}
+
+
+.interest-view-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    min-height: 90px;
+    margin-top: 0.5em;
 }
 
 .card-container_results .subText span {
     color: white;
 }
 
-.step-one {
-    display: none;
+.subText-topics {
+    margin-top: 1em;
 }
+
+/*
+.userInterestView::before {
+    content: "\25CF"; /* Unicode character for a filled 
+    color: red; 
+*/
+
+
+
+/* .step-one, 
+.step-two {
+    display: none;
+} */
 
 span.selected {
     background-color: var(--purple);
     color: white;
 }
+
