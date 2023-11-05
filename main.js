@@ -4,18 +4,21 @@ const interests = document.querySelectorAll('.interest');
 let pageCount = 1;
 let userInterests = []
 let userInfo = [];
+let pageTwo;
+let pageThree;
 
 
 function stepOne() {
     const userName = document.querySelector('#userName').value;
     const userEmail = document.querySelector('#userEmail').value;
     const firstPage = document.querySelector('.step-one');
+    const secondPage = document.querySelector('.step-two');
 
-    errorMessage(userName, userEmail, firstPage)
+    errorMessage(userName, userEmail, firstPage, secondPage)
     
 }
 
-function errorMessage(userName, userEmail, firstPage) {
+function errorMessage(userName, userEmail, firstPage, secondPage) {
     let errorMessage = document.querySelectorAll('.errorMessage');
     errorMessage.forEach((message) => {
         message.innerHTML = '';
@@ -45,17 +48,39 @@ function errorMessage(userName, userEmail, firstPage) {
         userInfo.push(userName);
         userInfo.push(userEmail);
         firstPage.style.display = 'none';
+        secondPage.style.display = 'block'
         pageCount += 1;
     }
 }
 
 function stepTwo() {
     const secondPage = document.querySelector('.step-two');
+    const thirdPage = document.querySelector('.step-three');
    if (userInterests.length > 0) {
     pageCount += 1;
     secondPage.style.display = 'none';
+    thirdPage.style.display = 'block';
+    
+    stepThree();
+
    } 
 
+}
+
+// pageIndicator(true, true);
+
+function pageIndicator(pageTwo, pageThree) {
+    const currentPage = document.querySelectorAll('.card-pages_dots .circle');
+    
+    
+
+    if (pageTwo) {
+        currentPage[1].classList.add('current');
+        console.log(currentPage);
+    }
+    if (pageThree) {
+        currentPage[2].classList.add('current');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -80,8 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function stepThree() {
-   
-
     const displayName = document.querySelector('.userNameView');
     const displayEmail = document.querySelector('.userEmailView');
     const interestView = document.querySelector('.interest-view-container');
@@ -97,6 +120,8 @@ function stepThree() {
         <p class="userInterestView custom-class">• ${interest}</p>`;
         interestView.insertAdjacentHTML('beforeend', userInterestElement);
     })
+   
+
 
 }
 
@@ -104,12 +129,14 @@ continueBtn.forEach((nextPage) => {
     nextPage.addEventListener('click', () => {
         if (pageCount === 1) {
             stepOne();
+            pageIndicator(true, false)
             console.log(userInfo)
         } else if (pageCount === 2) {
             stepTwo();
+            pageIndicator(true, true)
             
         } else if (pageCount === 3) {
-            stepThree();
+            console.log("step three is working")
         }
     });
 });
