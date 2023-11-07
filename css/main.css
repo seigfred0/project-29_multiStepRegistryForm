@@ -30,7 +30,7 @@ body {
 /* Background Colors */
 main {
     position: relative;
-    max-width: 640px;
+    
     background-color: var(--darkblue);
     height: 100vh;
     margin: 0 auto;
@@ -42,6 +42,9 @@ main {
     align-items: center;
 }
 
+
+
+
 button {
     cursor: pointer;
 }
@@ -49,7 +52,7 @@ button {
 .background-colors-one {
     position: absolute;
     top: 20em;
-    left: 12em;
+    right: -20em;
     object-fit: contain;
     z-index: -1;
 }

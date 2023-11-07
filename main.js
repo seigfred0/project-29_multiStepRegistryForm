@@ -60,19 +60,14 @@ function stepTwo() {
     pageCount += 1;
     secondPage.style.display = 'none';
     thirdPage.style.display = 'block';
-    
     stepThree();
 
    } 
 
 }
 
-// pageIndicator(true, true);
-
 function pageIndicator(pageTwo, pageThree) {
     const currentPage = document.querySelectorAll('.card-pages_dots .circle');
-    
-    
 
     if (pageTwo) {
         currentPage[1].classList.add('current');
@@ -108,8 +103,6 @@ function stepThree() {
     const displayName = document.querySelector('.userNameView');
     const displayEmail = document.querySelector('.userEmailView');
     const interestView = document.querySelector('.interest-view-container');
-    // console.log(displayUserInterest)
-    // console.log(userInterests)
     displayName.innerHTML = userInfo[0];
     displayEmail.innerHTML = userInfo[1];
     
